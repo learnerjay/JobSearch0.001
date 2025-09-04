@@ -29,7 +29,9 @@ public class JobController {
 	
 	@Autowired
 	SearchService searchService;
+logger.info("ENTERING: findAll() method, parameters: no parameters");
 	
+logger.info("ENTERING: findAll() method, parameters: no parameters");
 	
 	@GetMapping
 	public List<JobDTO> findAll()
@@ -47,19 +49,25 @@ public class JobController {
 	public List<JobContactViewDTO> findByContactEmail(@PathVariable( "contactEmail" ) String contactEmail)
 	{
 		return jobService.findByContactEmail(contactEmail);
+logger.info("ENTERING: createJob() method, parameters: no parameters");
 	}
+logger.info("ENTERING: createJob() method, parameters: jobDTO={}", jobDTO);
 	
 	@PostMapping
 	public String createJob(@RequestBody JobDTO jobDTO)
 	{
 		return jobService.createJob(jobDTO);
+logger.info("ENTERING: updateJob() method, parameters: no parameters");
 	}
+logger.info("ENTERING: updateJob() method, parameters: jobDTO={}", jobDTO);
 	
 	@PutMapping
 	public void updateJob(@RequestBody JobDTO jobDTO)
 	{
 		jobService.updateJob(jobDTO);
+logger.info("ENTERING: search() method, parameters: "/search"={}", "/search");
 	}
+logger.info("ENTERING: search() method, parameters: term={}, p={}", term, p);
 	
 	@GetMapping(value = "/search")
 	public List<JobDTO> search(@RequestParam String term, Pageable p)
