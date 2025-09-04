@@ -32,10 +32,12 @@ public class EmployerService {
 	String test2;
 	int test3;
 	Employer e;
+logger.info("ENTERING: findAll() method, parameters: no parameters");
 	
 	
 	public List<EmployerDTO> findAll()
 	{
+logger.info("ENTERING: findById() method, parameters: no parameters");
 		return dao.findAll().stream().map(cndt -> 
 			modelMapper.map(cndt, EmployerDTO.class)).collect(Collectors.toList());
 	}
@@ -56,7 +58,9 @@ public class EmployerService {
 		e.setEmail("a@yahoo.com");
 		
 		return modelMapper.map(optEmp.get(), EmployerDTO.class);
+logger.info("ENTERING: createEmployer() method, parameters: no parameters");
 	}
+logger.info("ENTERING: createEmployer() method, parameters: empDTO={}", empDTO);
 	
 	@Transactional
 	public String createEmployer(EmployerDTO empDTO)
@@ -72,7 +76,9 @@ public class EmployerService {
 		
 		return emp.getEmployerId();
 	}
+logger.info("ENTERING: updateEmployer() method, parameters: no parameters");
 	
+logger.info("ENTERING: updateEmployer() method, parameters: empDTO={}", empDTO);
 	
 	@Transactional
 	public void updateEmployer(EmployerDTO empDTO)
