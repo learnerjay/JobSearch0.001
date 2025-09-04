@@ -29,8 +29,15 @@ public class JobController {
 	
 	@Autowired
 	SearchService searchService;
+logger.debug("ENTERING: findAll() method");
+logger.debug("ENTERING: findAll() method, parameters: no parameters");
+logger.debug("ENTERING: findAll() method");
+logger.debug("ENTERING: findAll() method");
+logger.debug("ENTERING: findAll() method, parameters: no parameters");
 	
+logger.debug("ENTERING: findAll() method");
 	
+logger.debug("EXITING: findAll() method - Successfully completed");
 	@GetMapping
 	public List<JobDTO> findAll()
 	{
@@ -44,23 +51,38 @@ public class JobController {
 	}
 	
 	@GetMapping(value = "/contacts/{contactEmail}")
+logger.debug("ENTERING: createJob() method, parameters: no parameters");
 	public List<JobContactViewDTO> findByContactEmail(@PathVariable( "contactEmail" ) String contactEmail)
+logger.debug("ENTERING: createJob() method, parameters: jobDTO={}", jobDTO);
 	{
+logger.debug("ENTERING: createJob() method");
 		return jobService.findByContactEmail(contactEmail);
+logger.debug("ENTERING: createJob() method");
 	}
+logger.debug("ENTERING: updateJob() method, parameters: no parameters");
 	
+logger.debug("ENTERING: updateJob() method, parameters: jobDTO={}", jobDTO);
+logger.debug("EXITING: createJob() method - Successfully completed");
 	@PostMapping
 	public String createJob(@RequestBody JobDTO jobDTO)
+logger.debug("ENTERING: updateJob() method");
 	{
+logger.debug("ENTERING: search() method, parameters: "/search"={}", "/search");
+logger.debug("ENTERING: updateJob() method");
+logger.debug("ENTERING: search() method, parameters: term={}, p={}", term, p);
 		return jobService.createJob(jobDTO);
 	}
 	
+logger.debug("EXITING: updateJob() method - Successfully completed");
 	@PutMapping
+logger.debug("ENTERING: search() method");
 	public void updateJob(@RequestBody JobDTO jobDTO)
+logger.debug("ENTERING: search() method");
 	{
 		jobService.updateJob(jobDTO);
 	}
 	
+logger.debug("EXITING: search() method - Successfully completed");
 	@GetMapping(value = "/search")
 	public List<JobDTO> search(@RequestParam String term, Pageable p)
 	{
