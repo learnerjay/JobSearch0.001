@@ -11,9 +11,11 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.TextCriteria;
 import org.springframework.data.mongodb.core.query.TextQuery;
 import org.springframework.stereotype.Repository;
+import lombok.extern.slf4j.Slf4j;
 
 
 @Repository
+@Slf4j
 public class SearchDAO {
 	
 	@Autowired
@@ -21,13 +23,17 @@ public class SearchDAO {
 
 	public <T> List<T> searchByTerm(Class className, String term, Pageable p)
 	{
+		log.info("ENTRY: {}.{}() - Parameters: className={}, term={}, p={}", "SearchDAO", "searchByTerm", className, term, p);
 		TextCriteria criteria = TextCriteria.forDefaultLanguage()
 				.matchingAny(term.split("\\s+"));  // handles multiple words
 
+		log.debug("VAR: {}.{}() - {} = {} (Was: {})", "SearchDAO", "searchByTerm", "p", p, oldValue);
 		Query query = TextQuery.queryText(criteria)
 				.with(Sort.by(Sort.Direction.DESC, "updatedOn"))
 				.with(p);
 
+		if (durationMs > thresholdMs) log.warn("SLOW_DB: {} - Time: {}ms (Threshold: {}ms) - Query: {} - Collection: {}", "FIND", durationMs, thresholdMs, querySummary, "find");
 		return template.find(query, className);
 	}
 }
+log.info("EXIT: {}.{}() - Completed - Time: {}ms - Operations: {}", "SearchDAO", "searchByTerm", durationMs, operationsPerformed);
